@@ -7,12 +7,9 @@ from app.models import Usuario, Cliente
 
 @app.route("/", methods=["GET", "POST"])
 def login():
-
     if request.method == "POST":
-
         email = request.form["email"]
         senha = request.form["senha"]
-
         usuario = Usuario.query.filter_by(
             email=email
         ).first()
@@ -28,7 +25,6 @@ def login():
             return redirect(
                 url_for("dashboard")
             )
-
         cliente = Cliente.query.filter_by(
             email=email
         ).first()
