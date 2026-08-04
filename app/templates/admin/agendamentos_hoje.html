@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Agenda do Dia{% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+
+    <h1 class="titulo">
+        Agenda de {{ hoje.strftime("%d/%m/%Y") }}
+    </h1>
+
+    {% if agendamentos %}
+
+    <table class="table table-dark table-striped">
+
+        <thead>
+            <tr>
+                <th>Hora</th>
+                <th>Cliente</th>
+                <th>Serviço</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            {% for agendamento in agendamentos %}
+
+            <tr>
+                <td>{{ agendamento.hora.strftime("%H:%M") }}</td>
+                <td>{{ agendamento.cliente.nome }}</td>
+                <td>{{ agendamento.servico.nome }}</td>
+
+                <td>
+                    {% if agendamento.status == "agendado" %}
+                        <span class="badge bg-success">Agendado</span>
+
+                    {% elif agendamento.status == "concluido" %}
+                        <span class="badge bg-primary">Concluído</span>
+
+                    {% elif agendamento.status == "cancelado" %}
+                        <span class="badge bg-danger">Cancelado</span>
+
+                    {% else %}
+                        <span class="badge bg-secondary">
+                            {{ agendamento.status }}
+                        </span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    <div class="alert alert-info">
+        Não há agendamentos para hoje.
+    </div>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
+            Voltar 
+        </a>
+    </div>
+
+</div>
+{% endblock %}

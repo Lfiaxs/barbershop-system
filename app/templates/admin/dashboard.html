@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - Barbearia Fiais{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+{% endblock %}
+
+{% block content %}
+
+<div class="layout">
+
+<aside class="sidebar">
+
+    <div class="logo">
+        Barbearia Fiais
+    </div>
+
+    <div class="usuario">
+        👤 {{ session["usuario"] }}
+    </div>
+
+    <nav>
+
+        <a href="{{ url_for('dashboard') }}" class="ativo">
+            🏠 Dashboard
+        </a>
+
+        <a href="{{ url_for('clientes') }}">
+            👥 Clientes
+        </a>
+
+        <a href="{{ url_for('agendamentos') }}">
+            📅 Agendamentos
+        </a>
+
+        <a href="{{ url_for('agendamentos_hoje') }}">
+            🗓️ Agenda do Dia
+        </a>
+
+        <a href="{{ url_for('servicos') }}">
+            ✂️ Serviços
+        </a>
+
+        <a href="{{ url_for('financeiro') }}">
+            💰 Financeiro
+        </a>
+
+        <a href="{{ url_for('historico') }}">
+            📜 Histórico
+        </a>
+
+    </nav>
+
+    <a href="{{ url_for('logout') }}" class="sair">
+        🚪 Sair
+    </a>
+
+</aside>
+
+<main class="conteudo">
+
+    <h1>Dashboard</h1>
+
+    <p>
+        Bem-vindo ao sistema da Barbearia Fiais.
+    </p>
+
+    <div class="row mt-4">
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark text-white">
+                <div class="card-body text-center">
+                    <h2>{{ total_clientes }}</h2>
+                    <p>Clientes</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark text-white">
+                <div class="card-body text-center">
+                    <h2>{{ total_servicos }}</h2>
+                    <p>Serviços</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-dark text-white">
+                <div class="card-body text-center">
+                    <h2>{{ agendamentos_hoje }}</h2>
+                    <p>Hoje</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body text-center">
+                    <h2>R$ {{ "%.2f"|format(receita_hoje) }}</h2>
+                    <p>Receita Prevista</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+
+</div>
+
+{% endblock %}

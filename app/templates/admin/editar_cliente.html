@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}
+Editar Cliente
+{% endblock %}
+{% block content %}
+
+<div class="container mt-5" style="max-width: 700px;">
+
+    <h1 class="titulo">
+        Editar Cliente
+    </h1>
+
+    <form method="POST">
+        <div class="mb-3">
+            <label class="form-label">
+                Nome
+            </label>
+
+            <input
+                type="text"
+                name="nome"
+                class="form-control"
+                value="{{ cliente.nome }}"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                Telefone
+            </label>
+
+            <input
+                type="text"
+                name="telefone"
+                class="form-control"
+                value="{{ cliente.telefone }}"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">
+                E-mail
+            </label>
+
+            <input
+                type="email"
+                name="email"
+                class="form-control"
+                value="{{ cliente.email }}"
+                required>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">
+                Observações
+            </label>
+
+            <textarea
+                name="observacoes"
+                class="form-control"
+                rows="4">{{ cliente.observacoes or "" }}
+            </textarea>
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-warning">
+            Salvar Alterações
+
+        </button>
+
+        <a
+            href="{{ url_for('clientes') }}"
+            class="btn btn-secondary">
+            Cancelar
+
+        </a>
+
+    </form>
+</div>
+{% endblock %}

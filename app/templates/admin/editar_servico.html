@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}
+Editar Serviço
+{% endblock %}
+{% block content %}
+
+<div class="container mt-5" style="max-width:700px;">
+
+    <h1 class="titulo">
+        Editar Serviço
+    </h1>
+
+    <form method="POST">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Nome
+            </label>
+
+            <input
+                type="text"
+                name="nome"
+                class="form-control"
+                value="{{ servico.nome }}"
+                required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Preço (R$)
+            </label>
+
+            <input
+                type="number"
+                name="preco"
+                step="0.01"
+                min="0"
+                class="form-control"
+                value="{{ servico.preco }}"
+                required>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Duração (minutos)
+            </label>
+
+            <input
+                type="number"
+                name="duracao"
+                min="1"
+                class="form-control"
+                value="{{ servico.duracao }}"
+                required>
+
+        </div>
+
+        <div class="mb-4">
+
+            <label class="form-label">
+                Descrição
+            </label>
+
+            <textarea
+                name="descricao"
+                class="form-control"
+                rows="4">{{ servico.descricao or "" }}</textarea>
+
+        </div>
+
+        <button
+            type="submit"
+            class="btn btn-warning">
+
+            Salvar Alterações
+
+        </button>
+
+        <a
+            href="{{ url_for('servicos') }}"
+            class="btn btn-secondary">
+
+            Cancelar
+
+        </a>
+
+    </form>
+</div>
+{% endblock %}

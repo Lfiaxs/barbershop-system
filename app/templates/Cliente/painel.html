@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}Painel do Cliente{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5" style="max-width:1100px;">
+
+    <h1 class="titulo text-center mb-2">
+        Olá, {{ cliente.nome.split()[0] }}
+    </h1>
+
+    <p class="text-center text-light mb-5">
+        Seja Bem-vindo!
+    </p>
+
+    <div class="alert alert-warning text-center mb-5">
+        Agende seus horários, acompanhe seus atendimentos e fale conosco pelo WhatsApp.
+    </div>
+
+    <hr class="mb-5">
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <a href="{{ url_for('novo_agendamento_cliente') }}" class="text-decoration-none">
+                <div class="card h-100 text-center shadow-lg border-0 card-fiais">
+                    <div class="card-body">
+                        <h2>📅</h2>
+                        <h5>Novo Agendamento</h5>
+                        <p class="text-muted">
+                            Agende seu próximo horário.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a href="{{ url_for('meus_agendamentos') }}" class="text-decoration-none">
+                <div class="card h-100 text-center shadow-lg border-0 card-fiais">
+                    <div class="card-body">
+                        <h2>🗓️</h2>
+                        <h5>Meus Agendamentos</h5>
+                        <p class="text-muted">
+                            Consulte seus horários agendados.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a href="{{ url_for('historico_cliente') }}" class="text-decoration-none">
+                <div class="card h-100 text-center shadow-lg border-0 card-fiais">
+                    <div class="card-body">
+                        <h2>📜</h2>
+                        <h5>Histórico</h5>
+                        <p class="text-muted">
+                            Veja seus atendimentos anteriores.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="https://wa.me/5538998166828" target="_blank" class="text-decoration-none">
+                <div class="card h-100 text-center shadow-lg border-0 card-fiais">
+                    <div class="card-body">
+                        <h2>💬</h2>
+                        <h5>WhatsApp</h5>
+                        <p class="text-muted">
+                            Fale diretamente com a barbearia.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-6">
+            <a href="{{ url_for('logout_cliente') }}" class="text-decoration-none">
+                <div class="card h-100 text-center shadow-lg border-0 card-fiais">
+                    <div class="card-body">
+                        <h2>🚪</h2>
+                        <h5>Sair</h5>
+                        <p class="text-muted">
+                            Encerrar sua sessão.
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

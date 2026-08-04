@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}
+Cadastro
+{% endblock %}
+{% block content %}
+
+<div class="container mt-5" style="max-width:600px;">
+
+    <div class="text-center mb-4">
+        <h1 class="titulo">Barbearia Fiais</h1>
+        <p class="subtitulo">
+            Crie sua conta para realizar seus agendamentos.
+        </p>
+    </div>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Nome completo</label>
+            <input
+                type="text"
+                name="nome"
+                class="form-control"
+                placeholder="Digite seu nome"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Telefone</label>
+            <input
+                type="text"
+                name="telefone"
+                class="form-control"
+                placeholder="(38) 99999-9999"
+                required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">E-mail</label>
+            <input
+                type="email"
+                name="email"
+                class="form-control"
+                placeholder="Digite seu e-mail"
+                required>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Senha</label>
+            <input
+                type="password"
+                name="senha"
+                class="form-control"
+                placeholder="Mínimo de 6 caracteres"
+                required>
+        </div>
+
+        <button type="submit" class="btn btn-warning w-100">
+            Criar Conta
+        </button>
+
+    </form>
+
+    <div class="text-center mt-4">
+
+        <small>
+
+            Já possui uma conta?
+
+            <a href="{{ url_for('login') }}">
+                Entrar
+            </a>
+
+        </small>
+
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Novo Agendamento{% endblock %}
+{% block content %}
+
+<div class="container mt-5" style="max-width:700px;">
+
+    <h1 class="titulo">Novo Agendamento</h1>
+
+    <form method="POST">
+
+        <div class="mb-3">
+            <label class="form-label">Cliente</label>
+            <select name="cliente_id" class="form-select" required>
+                <option value="">Selecione um cliente</option>
+                {% for cliente in clientes %}
+                <option value="{{ cliente.id }}">{{ cliente.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Serviço</label>
+            <select name="servico_id" class="form-select" required>
+                <option value="">Selecione um serviço</option>
+                {% for servico in servicos %}
+                <option value="{{ servico.id }}">{{ servico.nome }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Data</label>
+            <input type="date" name="data" id="data" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Hora</label>
+            <select name="hora" id="hora" class="form-select" required>
+                <option value="">Selecione uma data primeiro</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Observações</label>
+            <textarea name="observacoes" class="form-control" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-warning">Salvar Agendamento</button>
+        <a href="{{ url_for('agendamentos') }}" class="btn btn-secondary">Cancelar</a>
+
+    </form>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById("data").addEventListener("change", function () {
+    const data = this.value;
+    const selectHora = document.getElementById("hora");
+
+    selectHora.innerHTML = '<option>Carregando horários...</option>';
+
+    fetch(`/agendamentos/horarios-disponiveis?data=${data}`)
+        .then(response => response.json())
+        .then(horarios => {
+
+            selectHora.innerHTML = '<option value="">Selecione um horário</option>';
+
+            if (horarios.length === 0) {
+                selectHora.innerHTML = '<option>Nenhum horário disponível</option>';
+                return;
+            }
+
+            horarios.forEach(horario => {
+                const option = document.createElement("option");
+                option.value = horario;
+                option.textContent = horario;
+                selectHora.appendChild(option);
+            });
+
+        })
+        .catch(() => {
+            selectHora.innerHTML = '<option>Erro ao carregar horários</option>';
+        });
+});
+</script>
+{% endblock %}
