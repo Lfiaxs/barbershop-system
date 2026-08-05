@@ -1,6 +1,4 @@
-from app import app, db
-from app.models import Usuario
-with app.app_context():
-    db.create_all()
+from app import app
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
