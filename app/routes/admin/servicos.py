@@ -26,7 +26,7 @@ def novo_servico():
             nome=request.form["nome"],
             preco=float(request.form["preco"]),
             duracao=int(request.form["duracao"]),
-            descricao=request.form["descricao"]
+            descricao=request.form.get("descricao", "").strip()
         )
 
         db.session.add(servico)
