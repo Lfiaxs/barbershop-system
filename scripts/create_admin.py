@@ -4,7 +4,12 @@ from werkzeug.security import generate_password_hash
 
 with app.app_context():
 
-    admin = Usuario.query.filter_by(email="admin@barbeariafiais.com").first()
+    db.create_all()
+
+    admin = Usuario.query.filter_by(
+        email="admin@barbeariafiais.com"
+    ).first()
+
     if admin:
         admin.nome = "Lucas"
         admin.senha = generate_password_hash("123456")
@@ -12,12 +17,14 @@ with app.app_context():
         db.session.commit()
         print("Administrador atualizado com sucesso!")
     else:
-        novo_admin = Usuario(
+        admin = Usuario(
             nome="Lucas",
             email="admin@barbeariafiais.com",
             senha=generate_password_hash("123456"),
             tipo="admin"
         )
-        db.session.add(novo_admin)
+
+        db.session.add(admin)
         db.session.commit()
+
         print("Administrador criado com sucesso!")
