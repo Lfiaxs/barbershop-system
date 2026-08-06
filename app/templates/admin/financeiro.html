@@ -3,162 +3,272 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container py-4">
 
-<h1 class="titulo">Financeiro</h1>
+    <h1 class="titulo text-center mb-4">
+        Financeiro
+    </h1>
 
-<div class="d-flex justify-content-end gap-2 mb-3">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end mb-4">
 
-    <a href="{{ url_for('financeiro') }}" class="btn btn-warning">
-        Atualizar
-    </a>
+        <a
+            href="{{ url_for('financeiro') }}"
+            class="btn btn-warning">
 
-    <a href="{{ url_for('historico_financeiro') }}" class="btn btn-dark">
-        Histórico Financeiro
-    </a>
+            Atualizar
 
-    {% if not fechamento %}
-    <a href="{{ url_for('fechar_mes') }}"
-       class="btn btn-success"
-       onclick="return confirm('Deseja realmente fechar o mês? Esta ação não poderá ser desfeita.')">
-        Fechar Mês
-    </a>
+        </a>
+
+        <a
+            href="{{ url_for('historico_financeiro') }}"
+            class="btn btn-dark">
+
+            Histórico Financeiro
+
+        </a>
+
+        {% if not fechamento %}
+
+        <a
+            href="{{ url_for('fechar_mes') }}"
+            class="btn btn-success"
+            onclick="return confirm('Deseja realmente fechar o mês? Esta ação não poderá ser desfeita.')">
+
+            Fechar Mês
+
+        </a>
+
+        {% endif %}
+
+    </div>
+
+    {% if fechamento %}
+
+    <div class="alert alert-success text-center">
+
+        Este mês já foi fechado.
+
+    </div>
+
     {% endif %}
 
-</div>
+    <div class="row g-3 mb-4">
 
-{% if fechamento %}
+        <div class="col-12 col-sm-6 col-xl-3">
 
-<div class="alert alert-success">
-    Este mês já foi fechado.
-</div>
+            <div class="card card-fiais bg-success text-white h-100">
 
-{% endif %}
+                <div class="card-body text-center">
 
-<div class="row mb-4">
+                    <h3>R$ {{ "%.2f"|format(receita_hoje) }}</h3>
 
-    <div class="col-md-3">
-        <div class="card bg-success text-white">
-            <div class="card-body text-center">
-                <h3>R$ {{ "%.2f"|format(receita_hoje) }}</h3>
-                <p class="mb-0">Receita Hoje</p>
+                    <p class="mb-0">
+                        Receita Hoje
+                    </p>
+
+                </div>
+
             </div>
-        </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card bg-primary text-white">
-            <div class="card-body text-center">
-                <h3>R$ {{ "%.2f"|format(receita_mes) }}</h3>
-                <p class="mb-0">Receita do Mês</p>
+        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+
+            <div class="card card-fiais bg-primary text-white h-100">
+
+                <div class="card-body text-center">
+
+                    <h3>R$ {{ "%.2f"|format(receita_mes) }}</h3>
+
+                    <p class="mb-0">
+                        Receita do Mês
+                    </p>
+
+                </div>
+
             </div>
-        </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card bg-dark text-white">
-            <div class="card-body text-center">
-                <h3>{{ quantidade }}</h3>
-                <p class="mb-0">Atendimentos</p>
+        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+
+            <div class="card card-fiais bg-dark text-white h-100">
+
+                <div class="card-body text-center">
+
+                    <h3>{{ quantidade }}</h3>
+
+                    <p class="mb-0">
+                        Atendimentos
+                    </p>
+
+                </div>
+
             </div>
-        </div>
-    </div>
 
-    <div class="col-md-3">
-        <div class="card bg-warning text-dark">
-            <div class="card-body text-center">
-                <h3>R$ {{ "%.2f"|format(ticket_medio) }}</h3>
-                <p class="mb-0">Ticket Médio</p>
+        </div>
+
+        <div class="col-12 col-sm-6 col-xl-3">
+
+            <div class="card card-fiais bg-warning text-dark h-100">
+
+                <div class="card-body text-center">
+
+                    <h3>R$ {{ "%.2f"|format(ticket_medio) }}</h3>
+
+                    <p class="mb-0">
+                        Ticket Médio
+                    </p>
+
+                </div>
+
             </div>
+
         </div>
+
     </div>
 
-</div>
+    <div class="card mb-4">
 
-<div class="card mb-4">
-    <div class="card-body">
-        <h4>Faturamento do Mês</h4>
-        <canvas id="graficoFinanceiro"></canvas>
+        <div class="card-body">
+
+            <h4 class="mb-4">
+                Faturamento do Mês
+            </h4>
+
+            <canvas id="graficoFinanceiro"></canvas>
+
+        </div>
+
     </div>
-</div>
 
-{% if atendimentos %}
+    {% if atendimentos %}
 
-<table class="table table-dark table-striped">
+    <div class="table-responsive mx-auto" style="max-width:1100px;">
 
-    <thead>
-        <tr>
-            <th>Data</th>
-            <th>Cliente</th>
-            <th>Serviço</th>
-            <th>Valor</th>
-        </tr>
-    </thead>
+        <table class="table table-dark table-striped align-middle">
 
-    <tbody>
+            <thead>
 
-        {% for atendimento in atendimentos %}
+                <tr>
 
-        <tr>
-            <td>{{ atendimento.data.strftime("%d/%m/%Y") }}</td>
-            <td>{{ atendimento.cliente.nome }}</td>
-            <td>{{ atendimento.servico.nome }}</td>
-            <td>R$ {{ "%.2f"|format(atendimento.servico.preco) }}</td>
-        </tr>
+                    <th>Data</th>
+                    <th>Cliente</th>
+                    <th>Serviço</th>
+                    <th>Valor</th>
 
-        {% endfor %}
+                </tr>
 
-    </tbody>
+            </thead>
 
-    <tfoot>
-        <tr>
-            <th colspan="3">Total do Mês</th>
-            <th>R$ {{ "%.2f"|format(receita_mes) }}</th>
-        </tr>
-    </tfoot>
+            <tbody>
 
-</table>
+                {% for atendimento in atendimentos %}
 
-{% else %}
+                <tr>
 
-<div class="alert alert-info">
-    Nenhum atendimento concluído neste mês.
-</div>
+                    <td>{{ atendimento.data.strftime("%d/%m/%Y") }}</td>
 
-{% endif %}
+                    <td>{{ atendimento.cliente.nome }}</td>
 
-<div class="text-center mt-4">
-    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
-        Voltar
-    </a>
-</div>
+                    <td>{{ atendimento.servico.nome }}</td>
+
+                    <td>
+                        R$ {{ "%.2f"|format(atendimento.servico.preco) }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+            <tfoot>
+
+                <tr>
+
+                    <th colspan="3">
+                        Total do Mês
+                    </th>
+
+                    <th>
+                        R$ {{ "%.2f"|format(receita_mes) }}
+                    </th>
+
+                </tr>
+
+            </tfoot>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-info text-center">
+
+        Nenhum atendimento concluído neste mês.
+
+    </div>
+
+    {% endif %}
+
+    <div class="text-center mt-4">
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="btn btn-secondary">
+
+            Voltar
+
+        </a>
+
+    </div>
 
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
 
-    const ctx = document.getElementById("graficoFinanceiro");
+document.addEventListener("DOMContentLoaded",()=>{
 
-    new Chart(ctx, {
-        type: "bar",
-        data: {
-            labels: {{ dias|tojson }},
-            datasets: [{
-                label: "Receita",
-                data: {{ valores|tojson }},
-                backgroundColor: "#ffc107",
-                borderColor: "#e0a800",
-                borderWidth: 1
+    const ctx=document.getElementById("graficoFinanceiro");
+
+    new Chart(ctx,{
+
+        type:"bar",
+
+        data:{
+
+            labels:{{ dias|tojson }},
+
+            datasets:[{
+
+                label:"Receita",
+
+                data:{{ valores|tojson }},
+
+                backgroundColor:"#ffc107",
+
+                borderColor:"#e0a800",
+
+                borderWidth:1
+
             }]
+
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: true
+
+        options:{
+
+            responsive:true,
+
+            maintainAspectRatio:true
+
         }
+
     });
 
 });
+
 </script>
 
 {% endblock %}

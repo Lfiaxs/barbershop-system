@@ -104,6 +104,7 @@ body{
     flex-direction:column;
     background:#121212;
     color:#FFF;
+    padding:20px;
 }
 
 .conteudo h1{
@@ -141,4 +142,152 @@ body{
 
 .card-fiais p{
     margin-top:10px;
+}
+
+.table{
+    margin-bottom:0;
+}
+
+.table-responsive{
+    border-radius:10px;
+}
+
+canvas{
+    width:100%!important;
+}
+
+img{
+    max-width:100%;
+    height:auto;
+}
+
+@media(max-width:992px){
+
+.sidebar{
+    width:220px;
+    padding:20px;
+}
+
+.conteudo h1{
+    font-size:36px;
+}
+
+.titulo{
+    font-size:36px;
+}
+
+.card-fiais h2{
+    font-size:2rem;
+}
+
+}
+
+@media(max-width:768px){
+
+.layout{
+    flex-direction:column;
+}
+
+.sidebar{
+    width:100%;
+    border-right:none;
+    border-bottom:3px solid #FFD400;
+    padding:15px;
+}
+
+.sidebar nav{
+    gap:5px;
+}
+
+.sidebar a{
+    margin-bottom:0;
+}
+
+.conteudo{
+    padding:15px;
+}
+
+.titulo{
+    font-size:30px;
+    text-align:center;
+}
+
+.login-titulo{
+    font-size:30px;
+    text-align:center;
+}
+
+.login-subtitulo{
+    text-align:center;
+}
+
+.conteudo h1{
+    font-size:30px;
+    text-align:center;
+}
+
+.conteudo p{
+    font-size:17px;
+    text-align:center;
+}
+
+.card-fiais{
+    margin-bottom:15px;
+}
+
+.card-fiais h2{
+    font-size:1.8rem;
+}
+
+.table{
+    font-size:.9rem;
+}
+
+.btn{
+    width:100%;
+    margin-bottom:10px;
+}
+
+}
+
+@media(max-width:576px){
+
+body{
+    font-size:14px;
+}
+
+.titulo{
+    font-size:26px;
+}
+
+.login-titulo{
+    font-size:26px;
+}
+
+.conteudo h1{
+    font-size:26px;
+}
+
+.table{
+    font-size:.8rem;
+}
+
+.table th,
+.table td{
+    white-space:nowrap;
+}
+
+.form-control,
+.form-select{
+    font-size:15px;
+}
+
+.logo{
+    font-size:24px;
+}
+
+.usuario{
+    font-size:14px;
+}
+
 }

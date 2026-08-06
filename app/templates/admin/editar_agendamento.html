@@ -1,72 +1,135 @@
 {% extends "base.html" %}
 {% block title %}Editar Agendamento{% endblock %}
+
 {% block content %}
 
-<div class="container mt-5" style="max-width:700px;">
+<div class="container py-4" style="max-width:700px;">
 
-    <h1 class="titulo">Editar Agendamento</h1>
+    <h1 class="titulo text-center mb-4">
+        Editar Agendamento
+    </h1>
 
     <form method="POST">
 
         <div class="mb-3">
-            <label class="form-label">Cliente</label>
-            <select name="cliente_id" class="form-select" required>
+
+            <label class="form-label">
+                Cliente
+            </label>
+
+            <select
+                name="cliente_id"
+                class="form-select"
+                required>
+
                 {% for cliente in clientes %}
-                <option value="{{ cliente.id }}" {% if cliente.id == agendamento.cliente_id %}selected{% endif %}>
+
+                <option
+                    value="{{ cliente.id }}"
+                    {% if cliente.id==agendamento.cliente_id %}selected{% endif %}>
+
                     {{ cliente.nome }}
+
                 </option>
+
                 {% endfor %}
+
             </select>
+
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Serviço</label>
-            <select name="servico_id" class="form-select" required>
+
+            <label class="form-label">
+                Serviço
+            </label>
+
+            <select
+                name="servico_id"
+                class="form-select"
+                required>
+
                 {% for servico in servicos %}
-                <option value="{{ servico.id }}" {% if servico.id == agendamento.servico_id %}selected{% endif %}>
+
+                <option
+                    value="{{ servico.id }}"
+                    {% if servico.id==agendamento.servico_id %}selected{% endif %}>
+
                     {{ servico.nome }}
+
                 </option>
+
                 {% endfor %}
+
             </select>
+
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Data</label>
+
+            <label class="form-label">
+                Data
+            </label>
+
             <input
                 type="date"
                 name="data"
                 class="form-control"
                 value="{{ agendamento.data.strftime('%Y-%m-%d') }}"
                 required>
+
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Hora</label>
+
+            <label class="form-label">
+                Hora
+            </label>
+
             <input
                 type="time"
                 name="hora"
                 class="form-control"
                 value="{{ agendamento.hora.strftime('%H:%M') }}"
                 required>
+
         </div>
 
         <div class="mb-4">
-            <label class="form-label">Observações</label>
+
+            <label class="form-label">
+                Observações
+            </label>
+
             <textarea
                 name="observacoes"
                 class="form-control"
                 rows="3">{{ agendamento.observacoes or "" }}</textarea>
+
         </div>
 
-        <button type="submit" class="btn btn-warning">
-            Salvar Alterações
-        </button>
+        <div class="d-grid gap-2 d-md-flex justify-content-center">
 
-        <a href="{{ url_for('agendamentos') }}" class="btn btn-secondary">
-            Cancelar
-        </a>
+            <button
+                type="submit"
+                class="btn btn-warning">
+
+                Salvar Alterações
+
+            </button>
+
+            <a
+                href="{{ url_for('agendamentos') }}"
+                class="btn btn-secondary">
+
+                Cancelar
+
+            </a>
+
+        </div>
 
     </form>
 
 </div>
+
 {% endblock %}

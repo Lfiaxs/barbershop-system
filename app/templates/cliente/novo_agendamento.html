@@ -1,12 +1,9 @@
 {% extends "base.html" %}
-
-{% block title %}
-Novo Agendamento
-{% endblock %}
+{% block title %}Novo Agendamento{% endblock %}
 
 {% block content %}
 
-<div class="container mt-5" style="max-width:700px;">
+<div class="container py-5" style="max-width:700px;">
 
     <h1 class="titulo text-center mb-4">
         Novo Agendamento
@@ -15,7 +12,10 @@ Novo Agendamento
     <form method="POST">
 
         <div class="mb-3">
-            <label class="form-label">Serviço</label>
+
+            <label class="form-label">
+                Serviço
+            </label>
 
             <select
                 name="servico_id"
@@ -27,16 +27,24 @@ Novo Agendamento
                 </option>
 
                 {% for servico in servicos %}
+
                 <option value="{{ servico.id }}">
+
                     {{ servico.nome }} - R$ {{ "%.2f"|format(servico.preco) }}
+
                 </option>
+
                 {% endfor %}
 
             </select>
+
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Data</label>
+
+            <label class="form-label">
+                Data
+            </label>
 
             <input
                 type="date"
@@ -44,10 +52,14 @@ Novo Agendamento
                 id="data"
                 class="form-control"
                 required>
+
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Horário</label>
+
+            <label class="form-label">
+                Horário
+            </label>
 
             <select
                 name="hora"
@@ -60,28 +72,41 @@ Novo Agendamento
                 </option>
 
             </select>
+
         </div>
 
         <div class="mb-4">
-            <label class="form-label">Observações</label>
+
+            <label class="form-label">
+                Observações
+            </label>
 
             <textarea
                 name="observacoes"
                 class="form-control"
                 rows="3"></textarea>
+
         </div>
 
-        <button
-            type="submit"
-            class="btn btn-warning">
-            Agendar
-        </button>
+        <div class="d-flex flex-column flex-sm-row gap-2">
 
-        <a
-            href="{{ url_for('painel_cliente') }}"
-            class="btn btn-secondary">
-            Voltar
-        </a>
+            <button
+                type="submit"
+                class="btn btn-warning flex-fill">
+
+                Agendar
+
+            </button>
+
+            <a
+                href="{{ url_for('painel_cliente') }}"
+                class="btn btn-secondary flex-fill">
+
+                Voltar
+
+            </a>
+
+        </div>
 
     </form>
 
@@ -115,6 +140,7 @@ document.getElementById("data").addEventListener("change", function () {
                 `;
 
                 return;
+
             }
 
             horarios.forEach(horario => {
@@ -128,9 +154,19 @@ document.getElementById("data").addEventListener("change", function () {
 
             });
 
+        })
+        .catch(() => {
+
+            selectHora.innerHTML = `
+                <option value="">
+                    Erro ao carregar horários
+                </option>
+            `;
+
         });
 
 });
 
 </script>
+
 {% endblock %}

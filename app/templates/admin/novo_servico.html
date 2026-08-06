@@ -1,12 +1,9 @@
 {% extends "base.html" %}
-
-{% block title %}
-Novo Serviço
-{% endblock %}
+{% block title %}Novo Serviço{% endblock %}
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container py-4" style="max-width:700px;">
 
     <h1 class="titulo text-center mb-4">
         Novo Serviço
@@ -15,16 +12,25 @@ Novo Serviço
     <form method="POST">
 
         <div class="mb-3">
-            <label class="form-label">Nome do Serviço</label>
+
+            <label class="form-label">
+                Nome do Serviço
+            </label>
+
             <input
                 type="text"
                 name="nome"
                 class="form-control"
                 required>
+
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Preço (R$)</label>
+
+            <label class="form-label">
+                Preço (R$)
+            </label>
+
             <input
                 type="number"
                 name="preco"
@@ -32,28 +38,39 @@ Novo Serviço
                 min="0"
                 class="form-control"
                 required>
+
         </div>
 
-        <div class="mb-4">
-            <label class="form-label">Duração (minutos)</label>
+        <div class="mb-3">
+
+            <label class="form-label">
+                Duração (minutos)
+            </label>
+
             <input
                 type="number"
                 name="duracao"
                 min="1"
                 class="form-control"
                 required>
-        </div> 
+
+        </div>
 
         <div class="mb-4">
-            <label class="form-label">Descrição</label>
+
+            <label class="form-label">
+                Descrição
+            </label>
+
             <textarea
                 name="descricao"
                 class="form-control"
                 rows="4"
                 placeholder="Descrição do serviço..."></textarea>
+
         </div>
 
-        <div class="text-center">
+        <div class="d-grid gap-2 d-md-flex justify-content-center">
 
             <button
                 type="submit"
@@ -72,7 +89,9 @@ Novo Serviço
             </a>
 
         </div>
+
     </form>
+
 </div>
 
 {% endblock %}

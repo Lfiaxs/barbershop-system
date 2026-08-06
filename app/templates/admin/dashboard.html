@@ -59,48 +59,54 @@
 
 <main class="conteudo">
 
-    <h1>Dashboard</h1>
+    <div class="container-fluid">
 
-    <p>
-        Bem-vindo ao sistema da Barbearia Fiais.
-    </p>
+        <h1 class="mb-2">
+            Dashboard
+        </h1>
 
-    <div class="row mt-4">
+        <p class="mb-4">
+            Bem-vindo ao sistema da Barbearia Fiais.
+        </p>
 
-        <div class="col-md-3 mb-3">
-            <div class="card bg-dark text-white">
-                <div class="card-body text-center">
-                    <h2>{{ total_clientes }}</h2>
-                    <p>Clientes</p>
+        <div class="row g-3">
+
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="card card-fiais bg-dark text-white h-100">
+                    <div class="card-body text-center">
+                        <h2>{{ total_clientes }}</h2>
+                        <p>Clientes</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-3 mb-3">
-            <div class="card bg-dark text-white">
-                <div class="card-body text-center">
-                    <h2>{{ total_servicos }}</h2>
-                    <p>Serviços</p>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="card card-fiais bg-dark text-white h-100">
+                    <div class="card-body text-center">
+                        <h2>{{ total_servicos }}</h2>
+                        <p>Serviços</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-3 mb-3">
-            <div class="card bg-dark text-white">
-                <div class="card-body text-center">
-                    <h2>{{ agendamentos_hoje }}</h2>
-                    <p>Hoje</p>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="card card-fiais bg-dark text-white h-100">
+                    <div class="card-body text-center">
+                        <h2>{{ agendamentos_hoje }}</h2>
+                        <p>Hoje</p>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-md-3 mb-3">
-            <div class="card bg-warning text-dark">
-                <div class="card-body text-center">
-                    <h2>R$ {{ "%.2f"|format(receita_hoje) }}</h2>
-                    <p>Receita Prevista</p>
+            <div class="col-12 col-sm-6 col-xl-3">
+                <div class="card card-fiais bg-warning text-dark h-100">
+                    <div class="card-body text-center">
+                        <h2>R$ {{ "%.2f"|format(receita_hoje) }}</h2>
+                        <p>Receita Prevista</p>
+                    </div>
                 </div>
             </div>
+
         </div>
 
     </div>

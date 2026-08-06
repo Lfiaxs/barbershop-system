@@ -6,11 +6,11 @@ Serviços - Barbearia Fiais
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container py-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
 
-        <h1 class="titulo">
+        <h1 class="titulo text-center mb-3 mb-md-0">
             Serviços
         </h1>
 
@@ -25,21 +25,26 @@ Serviços - Barbearia Fiais
     </div>
 
     {% if servicos %}
-    <div class ="w-75 mx-auto">
+
+    <div class="table-responsive mx-auto" style="max-width:900px;">
+
         <table class="table table-dark table-striped align-middle">
 
             <thead>
 
                 <tr>
+
                     <th>Nome</th>
                     <th>Preço</th>
                     <th>Duração</th>
-                    <th width="180">Ações</th>
+                    <th class="text-center">Ações</th>
+
                 </tr>
 
             </thead>
 
             <tbody>
+
                 {% for servico in servicos %}
 
                 <tr>
@@ -54,7 +59,7 @@ Serviços - Barbearia Fiais
                         {{ servico.duracao }} min
                     </td>
 
-                    <td>
+                    <td class="text-center">
 
                         <a
                             href="{{ url_for('editar_servico', id=servico.id) }}"
@@ -78,8 +83,11 @@ Serviços - Barbearia Fiais
                 </tr>
 
                 {% endfor %}
+
             </tbody>
+
         </table>
+
     </div>
 
     {% else %}

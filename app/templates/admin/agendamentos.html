@@ -4,187 +4,236 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container py-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 class="titulo">Agendamentos</h1>
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mb-4">
+
+        <h1 class="titulo text-center mb-3 mb-md-0">
+            Agendamentos
+        </h1>
 
         <a href="{{ url_for('novo_agendamento') }}" class="btn btn-fiais">
             Novo Agendamento
         </a>
+
     </div>
 
-    <form method="GET" class="row mb-4">
+    <form method="GET" class="row g-2 mb-4 justify-content-center">
 
-        <div class="col-md-4">
+        <div class="col-12 col-md-4">
+
             <input
                 type="date"
                 name="data"
                 class="form-control"
                 value="{{ data_filtro or '' }}">
+
         </div>
 
-        <div class="col-md-2">
+        <div class="col-6 col-md-2">
+
             <button class="btn btn-fiais w-100">
                 Filtrar
             </button>
+
         </div>
 
-        <div class="col-md-2">
-            <a href="{{ url_for('agendamentos') }}" class="btn btn-secondary w-100">
+        <div class="col-6 col-md-2">
+
+            <a
+                href="{{ url_for('agendamentos') }}"
+                class="btn btn-secondary w-100">
+
                 Limpar
+
             </a>
+
         </div>
 
     </form>
 
-    <table class="table table-dark table-striped align-middle">
+    <div class="table-responsive mx-auto" style="max-width:1200px;">
 
-        <thead>
+        <table class="table table-dark table-striped align-middle">
 
-            <tr>
-                <th>Cliente</th>
-                <th>Serviço</th>
-                <th>Data</th>
-                <th>Hora</th>
-                <th>Status</th>
-                <th>Obs</th>
-                <th width="240">Ações</th>
-            </tr>
+            <thead>
 
-        </thead>
+                <tr>
 
-        <tbody>
+                    <th>Cliente</th>
+                    <th>Serviço</th>
+                    <th>Data</th>
+                    <th>Hora</th>
+                    <th>Status</th>
+                    <th>Obs</th>
+                    <th class="text-center">Ações</th>
 
-            {% for agendamento in agendamentos %}
+                </tr>
 
-            <tr>
+            </thead>
 
-                <td>{{ agendamento.cliente.nome }}</td>
+            <tbody>
 
-                <td>{{ agendamento.servico.nome }}</td>
+                {% for agendamento in agendamentos %}
 
-                <td>{{ agendamento.data.strftime("%d/%m/%Y") }}</td>
+                <tr>
 
-                <td>{{ agendamento.hora.strftime("%H:%M") }}</td>
+                    <td>{{ agendamento.cliente.nome }}</td>
 
-                <td>
+                    <td>{{ agendamento.servico.nome }}</td>
 
-                    {% if agendamento.status == "agendado" %}
+                    <td>{{ agendamento.data.strftime("%d/%m/%Y") }}</td>
+
+                    <td>{{ agendamento.hora.strftime("%H:%M") }}</td>
+
+                    <td>
+
+                        {% if agendamento.status=="agendado" %}
                         <span class="badge bg-success">Agendado</span>
-                    {% elif agendamento.status == "cancelado" %}
+                        {% elif agendamento.status=="cancelado" %}
                         <span class="badge bg-danger">Cancelado</span>
-                    {% elif agendamento.status == "concluido" %}
+                        {% elif agendamento.status=="concluido" %}
                         <span class="badge bg-primary">Concluído</span>
-                    {% endif %}
+                        {% endif %}
 
-                </td>
+                    </td>
 
-                <td>
+                    <td>
 
-                    {% if agendamento.observacoes %}
+                        {% if agendamento.observacoes %}
 
-                    <button
-                        class="btn btn-info btn-sm"
-                        data-bs-toggle="modal"
-                        data-bs-target="#obs{{ agendamento.id }}">
-                        Ver
-                    </button>
+                        <button
+                            class="btn btn-info btn-sm"
+                            data-bs-toggle="modal"
+                            data-bs-target="#obs{{ agendamento.id }}">
 
-                    {% else %}
+                            Ver
 
-                    <span class="text-white">
-                        Nenhuma
-                    </span>
+                        </button>
 
-                    {% endif %}
+                        {% else %}
 
-                </td>
+                        <span class="text-white">
+                            Nenhuma
+                        </span>
 
-                <td>
-                    {% if agendamento.status == "agendado" %}
+                        {% endif %}
 
-                    <a href="{{ url_for('editar_agendamento', id=agendamento.id) }}"
-                       class="btn btn-warning btn-sm">
-                        Editar
-                    </a>
+                    </td>
 
-                    <a href="{{ url_for('concluir_agendamento', id=agendamento.id) }}"
-                       class="btn btn-success btn-sm"
-                       onclick="return confirm('Concluir atendimento?')">
-                        Concluir
-                    </a>
+                    <td class="text-center">
 
-                    <a href="{{ url_for('cancelar_agendamento', id=agendamento.id) }}"
-                       class="btn btn-danger btn-sm"
-                       onclick="return confirm('Cancelar agendamento?')">
-                        Cancelar
-                    </a>
+                        {% if agendamento.status=="agendado" %}
 
-                    {% else %}
+                        <a
+                            href="{{ url_for('editar_agendamento', id=agendamento.id) }}"
+                            class="btn btn-warning btn-sm">
 
-                    <span class="text-muted">-</span>
+                            Editar
 
-                    {% endif %}
+                        </a>
 
-                </td>
-            </tr>
+                        <a
+                            href="{{ url_for('concluir_agendamento', id=agendamento.id) }}"
+                            class="btn btn-success btn-sm"
+                            onclick="return confirm('Concluir atendimento?')">
 
-            {% if agendamento.observacoes %}
+                            Concluir
 
-            <div class="modal fade" id="obs{{ agendamento.id }}" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content bg-dark text-white">
+                        </a>
 
-                        <div class="modal-header">
+                        <a
+                            href="{{ url_for('cancelar_agendamento', id=agendamento.id) }}"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Cancelar agendamento?')">
 
-                            <h5 class="modal-title">
-                                Observações
-                            </h5>
+                            Cancelar
 
-                            <button
-                                type="button"
-                                class="btn-close btn-close-white"
-                                data-bs-dismiss="modal">
-                            </button>
+                        </a>
 
-                        </div>
+                        {% else %}
 
-                        <div class="modal-body">
+                        <span class="text-muted">-</span>
 
-                            <strong>Cliente:</strong>
-                            {{ agendamento.cliente.nome }}
+                        {% endif %}
 
-                            <hr>
+                    </td>
 
-                            {{ agendamento.observacoes }}
+                </tr>
 
-                        </div>
+                {% if agendamento.observacoes %}
 
-                        <div class="modal-footer">
+                <div class="modal fade" id="obs{{ agendamento.id }}" tabindex="-1">
 
-                            <button
-                                class="btn btn-secondary"
-                                data-bs-dismiss="modal">
-                                Fechar
-                            </button>
+                    <div class="modal-dialog">
+
+                        <div class="modal-content bg-dark text-white">
+
+                            <div class="modal-header">
+
+                                <h5 class="modal-title">
+                                    Observações
+                                </h5>
+
+                                <button
+                                    type="button"
+                                    class="btn-close btn-close-white"
+                                    data-bs-dismiss="modal">
+                                </button>
+
+                            </div>
+
+                            <div class="modal-body">
+
+                                <strong>Cliente:</strong>
+                                {{ agendamento.cliente.nome }}
+
+                                <hr>
+
+                                {{ agendamento.observacoes }}
+
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal">
+
+                                    Fechar
+
+                                </button>
+
+                            </div>
 
                         </div>
 
                     </div>
+
                 </div>
-            </div>
 
-            {% endif %}
+                {% endif %}
 
-            {% endfor %}
+                {% endfor %}
 
-        </tbody>
-    </table>
-    <div class="text-center mt-4">
-        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">
-            Voltar 
-        </a>
+            </tbody>
+
+        </table>
+
     </div>
+
+    <div class="text-center mt-4">
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="btn btn-secondary">
+
+            Voltar
+
+        </a>
+
+    </div>
+
 </div>
+
 {% endblock %}

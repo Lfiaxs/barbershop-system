@@ -1,17 +1,18 @@
 {% extends "base.html" %}
-{% block title %}
-Editar Cliente
-{% endblock %}
+{% block title %}Editar Cliente{% endblock %}
+
 {% block content %}
 
-<div class="container mt-5" style="max-width: 700px;">
+<div class="container py-4" style="max-width:700px;">
 
-    <h1 class="titulo">
+    <h1 class="titulo text-center mb-4">
         Editar Cliente
     </h1>
 
     <form method="POST">
+
         <div class="mb-3">
+
             <label class="form-label">
                 Nome
             </label>
@@ -22,9 +23,11 @@ Editar Cliente
                 class="form-control"
                 value="{{ cliente.nome }}"
                 required>
+
         </div>
 
         <div class="mb-3">
+
             <label class="form-label">
                 Telefone
             </label>
@@ -35,9 +38,11 @@ Editar Cliente
                 class="form-control"
                 value="{{ cliente.telefone }}"
                 required>
+
         </div>
 
         <div class="mb-3">
+
             <label class="form-label">
                 E-mail
             </label>
@@ -48,9 +53,11 @@ Editar Cliente
                 class="form-control"
                 value="{{ cliente.email }}"
                 required>
+
         </div>
 
         <div class="mb-4">
+
             <label class="form-label">
                 Observações
             </label>
@@ -58,24 +65,32 @@ Editar Cliente
             <textarea
                 name="observacoes"
                 class="form-control"
-                rows="4">{{ cliente.observacoes or "" }}
-            </textarea>
+                rows="4">{{ cliente.observacoes or "" }}</textarea>
+
         </div>
 
-        <button
-            type="submit"
-            class="btn btn-warning">
-            Salvar Alterações
+        <div class="d-grid gap-2 d-md-flex justify-content-center">
 
-        </button>
+            <button
+                type="submit"
+                class="btn btn-warning">
 
-        <a
-            href="{{ url_for('clientes') }}"
-            class="btn btn-secondary">
-            Cancelar
+                Salvar Alterações
 
-        </a>
+            </button>
+
+            <a
+                href="{{ url_for('clientes') }}"
+                class="btn btn-secondary">
+
+                Cancelar
+
+            </a>
+
+        </div>
 
     </form>
+
 </div>
+
 {% endblock %}

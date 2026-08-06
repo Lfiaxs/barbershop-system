@@ -1,76 +1,91 @@
 {% extends "base.html" %}
+
 {% block title %}
 Histórico Financeiro
 {% endblock %}
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container py-4">
 
-<h1 class="titulo">
-    Histórico Financeiro
-</h1>
+    <h1 class="titulo text-center mb-4">
+        Histórico Financeiro
+    </h1>
 
-{% if fechamentos %}
+    {% if fechamentos %}
 
-<table class="table table-dark table-striped">
+    <div class="table-responsive mx-auto" style="max-width:1000px;">
 
-    <thead>
+        <table class="table table-dark table-striped align-middle">
 
-        <tr>
-            <th>Competência</th>
-            <th>Receita</th>
-            <th>Atendimentos</th>
-            <th>Ticket Médio</th>
-            <th>Fechado em</th>
-        </tr>
+            <thead>
 
-    </thead>
+                <tr>
 
-    <tbody>
+                    <th>Competência</th>
+                    <th>Receita</th>
+                    <th>Atendimentos</th>
+                    <th>Ticket Médio</th>
+                    <th>Fechado em</th>
 
-        {% for fechamento in fechamentos %}
+                </tr>
 
-        <tr>
+            </thead>
 
-            <td>{{ meses[fechamento.mes] }}/{{ fechamento.ano }} </td>
-            <td>
-                R$ {{ "%.2f"|format(fechamento.receita) }}
-            </td>
-            <td>{{ fechamento.quantidade }}</td>
-            <td>
-                R$ {{ "%.2f"|format(fechamento.ticket_medio) }}
-            </td>
-            <td>
-                {{ fechamento.data_fechamento.strftime("%d/%m/%Y") }}
-            </td>
+            <tbody>
 
-        </tr>
+                {% for fechamento in fechamentos %}
 
-        {% endfor %}
+                <tr>
 
-    </tbody>
-</table>
+                    <td>{{ meses[fechamento.mes] }}/{{ fechamento.ano }}</td>
 
-{% else %}
+                    <td>
+                        R$ {{ "%.2f"|format(fechamento.receita) }}
+                    </td>
 
-<div class="alert alert-info">
+                    <td>{{ fechamento.quantidade }}</td>
 
-Nenhum mês foi fechado até o momento.
+                    <td>
+                        R$ {{ "%.2f"|format(fechamento.ticket_medio) }}
+                    </td>
+
+                    <td>
+                        {{ fechamento.data_fechamento.strftime("%d/%m/%Y") }}
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <div class="alert alert-info text-center">
+
+        Nenhum mês foi fechado até o momento.
+
+    </div>
+
+    {% endif %}
+
+    <div class="text-center mt-4">
+
+        <a
+            href="{{ url_for('financeiro') }}"
+            class="btn btn-secondary">
+
+            Voltar
+
+        </a>
+
+    </div>
 
 </div>
 
-{% endif %}
-
-<div class="text-center mt-4">
-
-<a href="{{ url_for('financeiro') }}"
-class="btn btn-secondary">
-
-Voltar
-
-</a>
-
-</div>
-</div>
 {% endblock %}
