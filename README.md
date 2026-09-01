@@ -1,104 +1,83 @@
-# ✂️ Barbershop System
+# Barbearia Fiais
 
-Sistema web de gerenciamento desenvolvido para uma barbearia, com o objetivo de centralizar o controle de clientes, serviços, agendamentos e informações administrativas.
+Sistema web para gerenciamento de uma barbearia, desenvolvido como projeto de portfólio com foco em desenvolvimento web, banco de dados e autenticação.
 
-O projeto foi desenvolvido utilizando **Python e Flask**, com banco de dados **SQLite** e **SQLAlchemy** para o gerenciamento das informações.
+## Sobre o projeto
 
-## 🎯 Objetivo
+O projeto foi desenvolvido a partir de uma situação real do ramo de barbearia, buscando centralizar tarefas como gerenciamento de clientes, serviços, agendamentos e controle financeiro em um único sistema.
 
-O sistema foi desenvolvido para transformar processos que poderiam ser realizados manualmente em uma aplicação web centralizada, facilitando a organização e o gerenciamento da barbearia.
+Além de solucionar um problema de organização, o projeto serviu para aplicar na prática conhecimentos de desenvolvimento web, banco de dados, autenticação, responsividade e versionamento de código.
 
-## ✨ Funcionalidades
+## Funcionalidades
 
-* 🔐 Sistema de login e autenticação
-* 👥 Cadastro e gerenciamento de clientes
-* 📅 Gerenciamento de agendamentos
-* ✂️ Cadastro e gerenciamento de serviços
-* 📜 Histórico de informações
-* 💰 Controle financeiro
-* 📊 Dashboard administrativo
-* 🗄️ Persistência de dados em banco de dados
-* 🔒 Senhas armazenadas utilizando hash
+### Área administrativa
+- Login e autenticação de usuários
+- Cadastro, edição e exclusão de clientes
+- Cadastro, edição e exclusão de serviços
+- Criação e gerenciamento de agendamentos
+- Consulta de horários disponíveis
+- Agenda do dia
+- Controle financeiro
+- Histórico de atendimentos
+- Histórico financeiro
 
-## 🛠️ Tecnologias utilizadas
+### Área do cliente
+- Cadastro de conta
+- Login
+- Criação de agendamentos
+- Consulta dos próprios agendamentos
+- Edição e cancelamento de agendamentos
+- Histórico de atendimentos
+- Acesso ao WhatsApp da barbearia
 
-### Backend
+## Demonstração
 
-* Python
-* Flask
-* Flask-SQLAlchemy
-* SQLAlchemy
+### Login
 
-### Banco de dados
+![Tela de Login](screenshots/login.png)
 
-* SQLite
+### Dashboard
 
-### Frontend
+![Dashboard](screenshots/dashboard.png)
 
-* HTML5
-* CSS3
-* JavaScript
-* Bootstrap
+### Clientes
 
-### Ferramentas
+![Clientes](screenshots/clientes.png)
 
-* Git
-* GitHub
-* Visual Studio Code
+### Agendamentos
 
-## 🏗️ Estrutura do projeto
+![Agendamentos](screenshots/agendamentos.png)
 
-```text
-barbershop-system/
-│
-├── app/
-│   ├── templates/
-│   ├── static/
-│   └── ...
-│
-├── scripts/
-├── barbearia.db
-├── run.py
-├── requirements.txt
-└── README.md
-```
-## 🗄️ Banco de dados
+### Financeiro
 
-O projeto utiliza **SQLite** como banco de dados e **Flask-SQLAlchemy** para realizar a comunicação entre a aplicação e o banco.
+![Financeiro](screenshots/financeiro.png)
 
-Entre as informações trabalhadas pelo sistema estão dados de usuários, clientes, serviços e demais registros necessários para o funcionamento da aplicação.
+### Painel do cliente
 
-## 🔐 Autenticação
+![Painel do Cliente](screenshots/painel-cliente.png)
 
-O sistema possui autenticação de usuários e utiliza **hash de senha** para evitar o armazenamento das senhas em texto puro.
+## Tecnologias
 
-## 📚 O que aprendi
+- Python
+- Flask
+- SQLAlchemy
+- SQLite
+- PostgreSQL
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap
+- Git
+- GitHub
 
-Durante o desenvolvimento deste projeto, pratiquei conceitos importantes de desenvolvimento de sistemas, incluindo:
+## Como executar localmente
 
-* Desenvolvimento de aplicações web com Flask;
-* Criação e organização de rotas;
-* Templates utilizando Jinja2;
-* Criação de modelos com SQLAlchemy;
-* Operações com banco de dados SQLite;
-* Autenticação e gerenciamento de sessões;
-* Hash de senhas;
-* Organização de projetos Python;
-* Desenvolvimento de interfaces com HTML e CSS;
-* Utilização de JavaScript;
-* Versionamento utilizando Git e GitHub.
+### Pré-requisitos
 
-## 📌 Status do projeto
+- Python 3.12 ou superior
+- Git
 
-🚧 **Em desenvolvimento**
+### 1. Clone o repositório
 
-O projeto pode receber novas funcionalidades e melhorias conforme novos conhecimentos forem adquiridos.
-
-## 👨‍💻 Desenvolvedor
-
-**Lucas Fiais**
-
-Estudante de Sistemas de Informação e desenvolvedor em formação.
-
-🔗 [GitHub](https://github.com/Lfiaxs)
-🔗 [LinkedIn](https://www.linkedin.com/in/lucas-fiais/)
+```bash
+git clone https://github.com/Lfiaxs/barbershop-system.git
