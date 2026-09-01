@@ -87,3 +87,37 @@ Além de solucionar um problema de organização, o projeto serviu para aplicar 
 
 ```bash
 git clone https://github.com/Lfiaxs/barbershop-system.git
+```
+### 2. Acesse a pasta do projeto
+
+```bash
+cd barbershop-system
+```
+### 3. Crie um ambiente virtual
+
+```bash
+python -m venv venv
+```
+### 5. Ative o ambiente virtual
+
+```bash
+No Windows:
+venv\Scripts\activate
+No Linux/macOS:
+source venv/bin/activate
+```
+
+### 6. Instale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+###7. Execute o sistema
+
+```bash
+python run.py
+```
+
+Após iniciar o servidor, acesse no navegador:
+http://127.0.0.1:5000
