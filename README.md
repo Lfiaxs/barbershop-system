@@ -11,6 +11,7 @@ Além de solucionar um problema de organização, o projeto serviu para aplicar 
 ## Funcionalidades
 
 ### Área administrativa
+
 - Login e autenticação de usuários
 - Cadastro, edição e exclusão de clientes
 - Cadastro, edição e exclusão de serviços
@@ -22,6 +23,7 @@ Além de solucionar um problema de organização, o projeto serviu para aplicar 
 - Histórico financeiro
 
 ### Área do cliente
+
 - Cadastro de conta
 - Login
 - Criação de agendamentos
@@ -44,6 +46,10 @@ Além de solucionar um problema de organização, o projeto serviu para aplicar 
 
 ![Clientes](screenshots/clientes.png)
 
+### Serviços
+
+![Serviços](screenshots/servicos.png)
+
 ### Agendamentos
 
 ![Agendamentos](screenshots/agendamentos.png)
@@ -52,7 +58,7 @@ Além de solucionar um problema de organização, o projeto serviu para aplicar 
 
 ![Financeiro](screenshots/financeiro.png)
 
-### Painel do cliente
+### Painel do Cliente
 
 ![Painel do Cliente](screenshots/painel-cliente.png)
 
