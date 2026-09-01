@@ -113,7 +113,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-###7. Execute o sistema
+### 7. Execute o sistema
 
 ```bash
 python run.py
